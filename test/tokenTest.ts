@@ -4,10 +4,9 @@ import chai from 'chai';
 import {
   MockContractFactory,
   MockContract,
-  FakeContract,
   smock,
 } from '@defi-wonderland/smock';
-import { Token, Token__factory } from '../typechain-types';
+import { Token, Token__factory } from '../typechain';
 
 const { expect } = chai;
 chai.use(smock.matchers);

@@ -7,6 +7,7 @@
   "author": "0xLucian",
   "license": "MIT",
   "devDependencies": {
+    "@defi-wonderland/smock": "^2.3.0",
     "@ethersproject/abi": "^5.7.0",
     "@ethersproject/providers": "^5.7.1",
     "@nomicfoundation/hardhat-chai-matchers": "^1.0.3",

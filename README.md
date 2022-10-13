@@ -1,6 +1,6 @@
 # Hardhat Template Project
 
-This is an example hardhat project including and example contract and ddeployment scripts along with some other necessary plugins like **hardhat-deploy**, **@nomicfoundation/hardhat-toolbox** and others.
+This is an example hardhat project including and example contract and deployment scripts along with some other necessary plugins like **hardhat-deploy**, **@nomicfoundation/hardhat-toolbox** and others.
 
 
 ## How to use?

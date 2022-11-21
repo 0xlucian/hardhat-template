@@ -4,7 +4,7 @@ import { HardhatUserConfig } from 'hardhat/config';
 import '@nomicfoundation/hardhat-toolbox';
 import 'hardhat-deploy';
 import '@nomiclabs/hardhat-ethers';
-
+import 'hardhat-gas-reporter';
 const config: HardhatUserConfig = {
   solidity: {
     compilers: [
@@ -40,6 +40,9 @@ const config: HardhatUserConfig = {
     outDir: 'typechain',
     target: 'ethers-v5',
     alwaysGenerateOverloads: false, // should overloads with full signatures like deposit(uint256) be generated always, even if there are no overloads?
+  },
+  gasReporter: {
+    enabled: true,
   },
 };
 

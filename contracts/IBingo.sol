@@ -26,12 +26,25 @@ interface IBingo {
         DIAGONAL
     }
 
+    /// @notice Creates a new Bingo game in BETTING stage
+    /// @return gameId of the newly created game
     function createNewGame() external returns (uint8 gameId);
 
-    function bet(uint8 gameId) external returns (uint8[25] memory board);
+    /// @notice Enters a game and draws a random card of numbers for the player
+    /// @dev Game should be only in BETTING stage
+    /// @return card of the player entered in the game
+    function bet(uint8 gameId) external returns (uint8[25] memory card);
 
+    /// @notice Draws a random number for a specific game
+    /// @dev Maximum of 30 numbers can be drawn for a game.
+    ///      This function enforces turnDuration betwen draws.
     function draw(uint8 gameId) external;
 
+    /// @notice Claims a bingo for user. Bingo winner wins the whole pot of bets for the game.
+    /// @dev After the game is finished it gets deleted from the games mapping
+    /// @param gameId id of game to claim Bingo
+    /// @param type_ the type of bingo you have (0-HORIZONTAL,1-VERTICAL,2-DIAGONAL)
+    /// @return isBingo indicating if user has a bingo or not
     function claimBingo(uint8 gameId, uint8 type_) external returns (bool);
 
     event NewGameCreated(uint8 indexed gameId);

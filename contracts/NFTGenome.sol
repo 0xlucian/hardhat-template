@@ -1,9 +1,13 @@
+```solidity
 pragma solidity ^0.8.13;
 import "hardhat/console.sol";
 
+/// @title A contract for generating and managing NFT genomes
 contract NFTGenome {
+    /// @notice Mapping of address to genome value
     mapping(address => uint) private genomes;
 
+    /// @notice Struct for NFT metadata properties
     struct Metadata {
         uint256 bgColor;
         uint256 bgEffect;
@@ -19,6 +23,7 @@ contract NFTGenome {
         uint256 border;
     }
 
+    /// @notice Enum for ordering NFT metadata properties
     enum PropertyOrder {
         bgColor,
         bgEffect,
@@ -34,15 +39,24 @@ contract NFTGenome {
         border
     }
 
+    /// @notice Adds a genome value for a given owner
+    /// @param owner The address of the genome owner
+    /// @param value The genome value to be added
     function addGenome(address owner, uint value) external {
         genomes[owner] = value;
         console.log('The value is %s',value);
     }
 
+    /// @notice Retrieves the genome value of a given owner
+    /// @param owner The address of the genome owner
+    /// @return The genome value of the given owner
     function getGenome(address owner) external view returns (uint) {
         return genomes[owner];
     }
 
+    /// @notice Encodes metadata properties into a single uint256 genome
+    /// @param metadata The metadata struct containing NFT properties
+    /// @return result The encoded genome as a uint256
     function encodeMetadata(
         Metadata calldata metadata
     ) external pure returns (uint256 result) {
@@ -79,6 +93,9 @@ contract NFTGenome {
         result = _encodeProperty(PropertyOrder.border, metadata.border, result);
     }
 
+    /// @notice Decodes a genome into its constituent metadata properties
+    /// @param genome The encoded genome as a uint256
+    /// @return metadata The decoded metadata struct
     function decodeMetadata(
         uint256 genome
     ) public pure returns (Metadata memory metadata) {
@@ -99,6 +116,10 @@ contract NFTGenome {
         metadata.border = _decodeProperty(PropertyOrder.border, genome);
     }
 
+    /// @notice Decodes a single property from a genome
+    /// @param property The property to decode
+    /// @param genome The encoded genome
+    /// @return The value of the decoded property
     function _decodeProperty(
         PropertyOrder property,
         uint genome
@@ -107,6 +128,11 @@ contract NFTGenome {
         return 255 & (genome >> shiftBy);
     }
 
+    /// @notice Encodes a single property into a genome
+    /// @param property The property to encode
+    /// @param propertyValue The value of the property to encode
+    /// @param genome The current genome to encode into
+    /// @return The updated genome with the new property encoded
     function _encodeProperty(
         PropertyOrder property,
         uint propertyValue,
@@ -117,3 +143,4 @@ contract NFTGenome {
     }
     
 }
+```
